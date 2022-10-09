@@ -1,0 +1,14 @@
+[
+  {
+    "created": "2020-02-22 16:40:00",
+    "text": "A new star appeared in the sky.",
+    "title": "A star is born",
+    "link": 9234732
+  },
+  {
+    "created": "2020-02-22 16:40:00",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit dolor sed erat consectetur fermentum. Etiam ut consectetur eros. Nulla varius mi purus, non iaculis purus condimentum quis. Curabitur ut volutpat augue, a fermentum magna. In euismod viverra odio sit amet dictum. Nunc finibus id justo nec scelerisque. Suspendisse commodo risus a quam euismod consectetur. Ut egestas risus ac risus tincidunt, id finibus ex congue. Sed tempor elementum ante. Sed mattis ornare ante, interdum rhoncus diam consequat quis. Aliquam suscipit mauris a orci condimentum feugiat. Aenean a lectus risus.",
+    "title": "Lorem ipsum",
+    "link": 666
+  }
+]
