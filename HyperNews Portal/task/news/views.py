@@ -1,12 +1,19 @@
-from django.shortcuts import render
+from itertools import groupby
+from json import load, dumps
+from datetime import datetime
+
 from django.conf import settings
 from django.http import Http404
-from itertools import groupby
-from json import load
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+
+from .forms import ArticleForm
 
 
 def simple_date(long_date_string):
     return long_date_string[:10]
+
 
 def home(request):
     with open(settings.NEWS_JSON_PATH, "r") as json_file:
@@ -27,8 +34,7 @@ def home(request):
     # items.append(item)
 
     items = [{'date': date, 'news': list(news)} for date, news in
-                groupby(articles, lambda x: simple_date(x['created']))]
-
+             groupby(articles, lambda x: simple_date(x['created']))]
 
     context = {'items': items}
     return render(request, 'news/index.html', context=context)
@@ -45,3 +51,28 @@ def article(request, link):
         raise Http404
     context = {"news": article_to_display}
     return render(request, 'news/article.html', context=context)
+
+
+def get_link(articles):
+    return max([int(x['link']) for x in articles]) + 1
+
+
+class CreateNewsView(FormView):
+    form_class = ArticleForm
+    template_name = 'news/news_form.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        with open(settings.NEWS_JSON_PATH, "r") as json_file:
+            articles = load(json_file)
+        articles.append(
+            {
+                'title': form.cleaned_data.get('title'),
+                'text': form.cleaned_data.get('text'),
+                'created': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'link': get_link(articles)
+            }
+        )
+        with open(settings.NEWS_JSON_PATH, 'w') as json_file:
+            json_file.write(dumps(articles, indent=4))
+        return redirect(reverse_lazy('home'))
