@@ -5,6 +5,16 @@
     <title>HyperNews Portal</title>
 </head>
 <body>
-Coming soon
+<h2>Hyper news</h2>
+{% for item in items %}
+    <h4>{{item.date}}</h4>
+    <ul>
+    {% for article in item.news %}
+        <li><a href="{% url 'article' link=article.link %}">{{ article.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+<a target="_blank" href="/news/create/">Add news</a>
 </body>
 </html>

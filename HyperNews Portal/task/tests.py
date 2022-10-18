@@ -8,7 +8,14 @@ class HyperNewsTestRunner(HyperNewsTest):
 
     funcs = [
         # 1 task
-        HyperNewsTest.check_coming_soon_page
+        HyperNewsTest.check_coming_soon_page,
+        # 2 task
+        HyperNewsTest.check_news_page,
+        HyperNewsTest.check_news_page_main_link,
+        # 3 task
+        HyperNewsTest.check_main_header,
+        HyperNewsTest.check_main_page,
+        HyperNewsTest.check_main_page_create_link,
     ]
 
     @dynamic_test(data=funcs)

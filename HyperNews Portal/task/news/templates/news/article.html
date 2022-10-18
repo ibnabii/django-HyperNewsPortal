@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HyperNews Portal</title>
+    <title>{{ news.title }}</title>
 </head>
 <body>
-<a target="_blank" href="/news/">All news</a>
 <h2>{{ news.title }}</h2>
 <p>{{ news.created }}</p>
-<p> {{news.text }}</p>
+<p>{{ news.text }}</p>
+<a target="_blank" href="/news/">All news</a>
 </body>
 </html>
