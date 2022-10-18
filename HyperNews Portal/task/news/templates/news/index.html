@@ -16,5 +16,9 @@
 {% endfor %}
 
 <a target="_blank" href="{% url 'create' %}">Add news</a>
+<form method="get" action="">
+    <label for="id_q">Query:</label><input type="text" name="q" id="id_q">
+    <button type="submit">Search</button>
+</form>
 </body>
 </html>

@@ -32,7 +32,9 @@ def home(request):
     #         created = article['created'][:10]
     #         item = {'date': created, 'news': [article]}
     # items.append(item)
-
+    q = request.GET.get('q', '')
+    if q:
+        articles = filter(lambda x: q.lower() in x['title'].lower(), articles)
     items = [{'date': date, 'news': list(news)} for date, news in
              groupby(articles, lambda x: simple_date(x['created']))]
 
